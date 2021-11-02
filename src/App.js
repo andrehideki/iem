@@ -7,16 +7,16 @@ import { Emitter } from './Emitter.js'
 const App = {
   
   init() {
-    const currentDate = new Date();
     initEvents()
     Renderer.renderEntries(getEntries())
-    EntriesBalance.init({ currentMonth: currentDate.getMonth() + 1 })
+    EntriesBalance.init({ currentMonth: new Date().getMonth() + 1 })
     FormEntry.init()
   }
 }
 
 function initEvents() {
   Emitter.on('save', () => Renderer.renderEntries(getEntries()))
+  EntriesBalance.init({ currentMonth: new Date().getMonth() + 1 })
 }
 
 export { App }

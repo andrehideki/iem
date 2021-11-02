@@ -1,0 +1,8 @@
+{
+  "name": "iem",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/andrehideki/iem.git",
+  "author": "andrehideki <andre.hkiw@gmail.com>",
+  "license": "MIT"
+}
