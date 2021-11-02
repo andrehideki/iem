@@ -1,4 +1,4 @@
-import { registerEntry } from "./usecase/registerEntry.js";
+import { registerEntry } from "../usecase/registerEntry.js";
 
 const FormEntry = {
   
