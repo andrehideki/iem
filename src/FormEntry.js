@@ -1,3 +1,5 @@
+import { registerEntry } from "./usecase/registerEntry.js";
+
 const FormEntry = {
   
   init() {
@@ -12,7 +14,7 @@ const FormEntry = {
       const { name, value } = input
       if (!!name) data[name] = value || ''
     }
-    console.log(data)
+    registerEntry(data);
   }
 }
 
