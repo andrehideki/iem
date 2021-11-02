@@ -1,11 +1,11 @@
 import { Renderer } from './Renderer.js'
-import { Db as database } from './Db.js'
 import { FormEntry } from './FormEntry.js'
+import { getEntries } from './usecase/getEntries.js'
 
 const App = {
   
   init() {
-    Renderer.renderEntries(database)
+    Renderer.renderEntries(getEntries())
     FormEntry.init();
   }
 }
