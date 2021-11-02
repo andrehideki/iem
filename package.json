@@ -10,5 +10,8 @@
   },
   "scripts": {
     "dev": "electron ."
+  },
+  "dependencies": {
+    "lowdb": "^3.0.0"
   }
 }
