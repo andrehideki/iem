@@ -1,7 +1,9 @@
+import { Renderer } from './Renderer.js'
+
 const App = {
   
   init() {
-    console.log('init')
+    Renderer.renderEntries(['manga', 'uber'])
   }
 }
 
