@@ -1,10 +1,17 @@
+import { EntryRepository } from "../repository/entryRepository.js"
+
 const registerEntry = ({
   name, 
   value,
   description,
   date
 }) => {
-  console.log(name, value, description, date, 'registred')
+  EntryRepository.save({
+    name, 
+    value,
+    description,
+    date
+  })
 }
 
 export { registerEntry }

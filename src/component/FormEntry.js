@@ -1,3 +1,5 @@
+import { Renderer } from "../Renderer.js";
+import { getEntries } from "../usecase/getEntries.js";
 import { registerEntry } from "../usecase/registerEntry.js";
 
 const FormEntry = {
@@ -15,6 +17,7 @@ const FormEntry = {
       if (!!name) data[name] = value || ''
     }
     registerEntry(data);
+    Renderer.renderEntries(getEntries())
   }
 }
 

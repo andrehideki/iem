@@ -1,9 +1,14 @@
 import { Db } from '../Db.js'
 
 const EntryRepository = {
+  entries: Db,
   
   getAll() {
-    return Db;
+    return EntryRepository.entries;
+  },
+
+  save(entry) {
+    EntryRepository.entries.push(entry)
   }
 }
 
