@@ -1,5 +1,4 @@
-import { Renderer } from "../Renderer.js";
-import { getEntries } from "../usecase/getEntries.js";
+import { Emitter } from "../Emitter.js";
 import { registerEntry } from "../usecase/registerEntry.js";
 
 const FormEntry = {
@@ -16,8 +15,8 @@ const FormEntry = {
       const { name, value } = input
       if (!!name) data[name] = value || ''
     }
-    registerEntry(data);
-    Renderer.renderEntries(getEntries())
+    registerEntry(data)
+    Emitter.emit('save')
   }
 }
 
