@@ -2,22 +2,23 @@ const Renderer = {
   
   renderEntries(entries) {
     const tableEntries = document.getElementById('table_entries');
-    const tableHeaders = ['Data', 'Nome', 'Descrição', 'Valor']
-      .map(header => `<th>${header}</th>`).join('')
-    const tableRows = entries.map(entry => (`
-      <tr>
-        <td>${entry.date}</td>
-        <td>${entry.name}</td>
-        <td>${entry.description}</td>
-        <td>${entry.value}</td>
-      </tr>`
-      ))
-      .join('')
+    const headers = ['Data', 'Nome', 'Descrição', 'Valor'];
     tableEntries.innerHTML = `
       <thead>
-        <tr>${tableHeaders}</tr>
+        <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
       </thead>
-      <tbody>${tableRows}</tbody>
+      <tbody>
+        ${entries.map(entry => (`
+          <tr>
+            <td>${entry.date}</td>
+            <td>${entry.name}</td>
+            <td>${entry.description}</td>
+            <td>${entry.value}</td>
+          </tr>`
+          ))
+          .join('')
+        }
+      </tbody>
     `  
   }
 }

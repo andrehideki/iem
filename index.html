@@ -8,6 +8,25 @@
 </head>
 <body>
   <h1>Lançamentos</h1>
+  <form id="form_entry">
+    <label>
+      Name
+      <input name="name" />
+    </label>
+    <label>
+      Data
+      <input type="date" name="name" />
+    </label>
+    <label>
+      Description
+      <input name="description" />
+    </label>
+    <label>
+      Value
+      <input name="value" />
+    </label>
+    <button>Cadastrar</button>
+  </form>
   <table id="table_entries"></table>
   <script type="module">
     import { App } from './src/App.js';
