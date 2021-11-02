@@ -8,7 +8,7 @@ const App = {
   init() {
     const currentDate = new Date();
     Renderer.renderEntries(getEntries())
-    EntriesBalance.init(currentDate.getMonth() + 1)
+    EntriesBalance.init({ currentMonth: currentDate.getMonth() + 1 })
     FormEntry.init()
   }
 }

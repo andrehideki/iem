@@ -1,7 +1,7 @@
-import { Db } from "../Db.js"
+import { EntryRepository } from '../repository/entryRepository.js';
 
 const getEntries = () => {
-  return Db;
+  return EntryRepository.getAll();
 }
 
 export { getEntries }
