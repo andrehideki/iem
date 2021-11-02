@@ -1,9 +1,10 @@
 import { Renderer } from './Renderer.js'
+import { Db as database } from './Db.js'
 
 const App = {
   
   init() {
-    Renderer.renderEntries(['manga', 'uber'])
+    Renderer.renderEntries(database)
   }
 }
 

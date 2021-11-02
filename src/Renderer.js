@@ -6,7 +6,10 @@ const Renderer = {
       .map(header => `<th>${header}</th>`).join('')
     const tableRows = entries.map(entry => (`
       <tr>
-        <td>${entry}</td>
+        <td>${entry.date}</td>
+        <td>${entry.name}</td>
+        <td>${entry.description}</td>
+        <td>${entry.value}</td>
       </tr>`
       ))
       .join('')
