@@ -7,7 +7,12 @@ const FormEntry = {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log('here')
+    const data = {}
+    for (let input of event.target) {
+      const { name, value } = input
+      if (!!name) data[name] = value || ''
+    }
+    console.log(data)
   }
 }
 
