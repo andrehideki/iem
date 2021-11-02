@@ -6,8 +6,9 @@ import { EntriesBalance } from './component/EntriesBalanace.js'
 const App = {
   
   init() {
+    const currentDate = new Date();
     Renderer.renderEntries(getEntries())
-    EntriesBalance.init()
+    EntriesBalance.init(currentDate.getMonth() + 1)
     FormEntry.init()
   }
 }

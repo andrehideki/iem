@@ -1,13 +1,16 @@
+import { getMonthBalance } from "../usecase/getMonthBalance.js"
+
 const EntriesBalance = {
   
-  init() {
+  init({ currentMonth }) {
     const entriesBalance = document.getElementById('div_entries_balance')
+    const { positive, negative } = getMonthBalance(currentMonth);
     entriesBalance.innerHTML = `
       <div>
-        400
+        ${positive}
       </div>
       <div>
-        500
+        ${negative}
       </div>
     `
   }
