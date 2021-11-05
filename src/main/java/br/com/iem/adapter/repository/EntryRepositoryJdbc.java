@@ -3,8 +3,8 @@ package br.com.iem.adapter.repository;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 
-import br.com.iem.model.Entry;
-import br.com.iem.model.repository.EntryRepository;
+import br.com.iem.domain.Entry;
+import br.com.iem.domain.repository.EntryRepository;
 
 public class EntryRepositoryJdbc implements EntryRepository {
 	

@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Map;
 
-import br.com.iem.model.repository.RepositoryFactory;
-import br.com.iem.model.usecase.register_entry.RegisterEntry;
-import br.com.iem.model.usecase.register_entry.RegisterEntryInput;
+import br.com.iem.domain.repository.RepositoryFactory;
+import br.com.iem.domain.usecase.register_entry.RegisterEntry;
+import br.com.iem.domain.usecase.register_entry.RegisterEntryInput;
 
 public class GuiController {
 

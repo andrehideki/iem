@@ -2,8 +2,8 @@ package br.com.iem.adapter.factory;
 
 import br.com.iem.adapter.repository.DbConnection;
 import br.com.iem.adapter.repository.EntryRepositoryJdbc;
-import br.com.iem.model.repository.EntryRepository;
-import br.com.iem.model.repository.RepositoryFactory;
+import br.com.iem.domain.repository.EntryRepository;
+import br.com.iem.domain.repository.RepositoryFactory;
 
 public class RepositoryFactoryJdbc implements RepositoryFactory {
 

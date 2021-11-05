@@ -1,16 +1,18 @@
-package br.com.iem.model.usecase.register_entry;
+package br.com.iem.domain;
+
+import java.time.LocalDate;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class RegisterEntryInput {
+public class Entry {
+	private Long id;
 	private String name;
 	private String description;
-	private BigDecimal value;
 	private LocalDate date;
+	private BigDecimal value;
 }

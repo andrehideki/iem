@@ -1,8 +1,8 @@
-package br.com.iem.model.usecase.register_entry;
+package br.com.iem.domain.usecase.register_entry;
 
-import br.com.iem.model.Entry;
-import br.com.iem.model.repository.EntryRepository;
-import br.com.iem.model.repository.RepositoryFactory;
+import br.com.iem.domain.Entry;
+import br.com.iem.domain.repository.EntryRepository;
+import br.com.iem.domain.repository.RepositoryFactory;
 
 public class RegisterEntry {
 
