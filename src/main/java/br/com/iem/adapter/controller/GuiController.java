@@ -1,4 +1,4 @@
-package br.com.iem.adapter;
+package br.com.iem.adapter.controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
