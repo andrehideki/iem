@@ -15,6 +15,7 @@ public class Gui extends JFrame {
 	public Gui(GuiController guiController) {
 		this.guiController = guiController;
 		this.init();
+		guiController.getEntries();
 	}
 	
 	public void init() {

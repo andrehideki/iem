@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import br.com.iem.domain.repository.RepositoryFactory;
+import br.com.iem.domain.usecase.get_entries.GetEntries;
+import br.com.iem.domain.usecase.get_entries.GetEntriesOutput;
 import br.com.iem.domain.usecase.register_entry.RegisterEntry;
 import br.com.iem.domain.usecase.register_entry.RegisterEntryInput;
 
@@ -14,6 +16,11 @@ public class GuiController {
 	
 	public GuiController(RepositoryFactory repositoryFactory) {
 		this.repositoryFactory = repositoryFactory;
+	}
+	
+	public void getEntries() {
+		GetEntriesOutput output = new GetEntries(repositoryFactory).execute();
+		System.out.println(output);
 	}
 
 	public void addNewEntry(Map<String, Object> params) {
