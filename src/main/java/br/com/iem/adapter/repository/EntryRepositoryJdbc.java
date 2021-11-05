@@ -21,7 +21,7 @@ public class EntryRepositoryJdbc implements EntryRepository {
 							.append(" VALUES ")
 							.append(" (?, ?, ?, ?) ")
 							.toString());
-			int i = 0;
+			int i = 1;
 			statement.setString(i++, entry.getName());
 			statement.setString(i++, entry.getDescription());
 			statement.setBigDecimal(i++, entry.getValue());

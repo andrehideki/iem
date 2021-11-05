@@ -5,7 +5,7 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
-import br.com.iem.adapter.GuiController;
+import br.com.iem.adapter.controller.GuiController;
 
 public class Gui extends JFrame {
 

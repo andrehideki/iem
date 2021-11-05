@@ -11,6 +11,10 @@ import br.com.iem.model.usecase.register_entry.RegisterEntryInput;
 public class GuiController {
 
 	private RepositoryFactory repositoryFactory;
+	
+	public GuiController(RepositoryFactory repositoryFactory) {
+		this.repositoryFactory = repositoryFactory;
+	}
 
 	public void addNewEntry(Map<String, Object> params) {
 		new RegisterEntry(repositoryFactory).execute(RegisterEntryInput.builder()

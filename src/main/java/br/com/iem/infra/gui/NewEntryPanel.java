@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.com.iem.adapter.GuiController;
+import br.com.iem.adapter.controller.GuiController;
 
 public class NewEntryPanel extends JPanel {
 
