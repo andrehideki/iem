@@ -5,11 +5,15 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import br.com.iem.adapter.GuiController;
+
 public class Gui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private GuiController guiController;
 	
-	public Gui() {
+	public Gui(GuiController guiController) {
+		this.guiController = guiController;
 		this.init();
 	}
 	
@@ -24,7 +28,7 @@ public class Gui extends JFrame {
 
 	private void initComponents() {
 		Container contentPane = getContentPane();
-		NewEntryPanel newEntryPanel = new NewEntryPanel();
+		NewEntryPanel newEntryPanel = new NewEntryPanel(guiController);
 		contentPane.add(newEntryPanel, BorderLayout.NORTH);
 	}
 }

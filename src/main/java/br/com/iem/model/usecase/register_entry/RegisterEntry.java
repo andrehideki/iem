@@ -12,6 +12,6 @@ public class RegisterEntry {
 	}
 	
 	public void execute(RegisterEntryInput input) {
-		
+		System.out.println("registring: " + input);
 	}
 }
