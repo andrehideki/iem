@@ -1,4 +1,5 @@
 const newEntry = require('../../../domain/usecase/new_entry/newEntry.js');
+const EntryRepositoryMemory = require('../../../infra/repository/EntryRepositoryMemory.js');
 
 const entry = {
   name: 'Entry',
@@ -8,5 +9,5 @@ const entry = {
 }
 
 test('should register a new entry', () => {
-  newEntry(entry);
+  newEntry(entry, new EntryRepositoryMemory());
 })
