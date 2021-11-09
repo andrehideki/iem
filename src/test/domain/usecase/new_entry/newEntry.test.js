@@ -1,5 +1,5 @@
-const newEntry = require('../../../domain/usecase/new_entry/newEntry.js');
-const EntryRepositoryMemory = require('../../../infra/repository/EntryRepositoryMemory.js');
+const newEntry = require('../../../../domain/usecase/new_entry/newEntry.js');
+const EntryRepositoryMemory = require('../../../../infra/repository/EntryRepositoryMemory.js');
 
 var entry;
 var entryRepository;
