@@ -13,4 +13,8 @@ module.exports = class extends EntryRepository {
     entry.id = this.entries.length + 1;
     this.entries.push(entry);
   }
+
+  find({ name }) {
+    return this.entries.filter(e => e.name === name);
+  }
 }
