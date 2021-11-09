@@ -1,4 +1,4 @@
-const newEntry = () => {
+const newEntry = ({ name, description, date, value }) => {
   
 }
 
