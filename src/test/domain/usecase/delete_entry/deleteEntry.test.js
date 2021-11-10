@@ -1,4 +1,4 @@
-import deleteEntry from '../../../../domain/usecase/delete_entry/deleteEntry';
+import { deleteEntry } from '../../../../domain/usecase/';
 import EntryRepositoryMemory from '../../../../infra/repository/EntryRepositoryMemory';
 
 var entry;

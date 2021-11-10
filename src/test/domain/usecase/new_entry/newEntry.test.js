@@ -1,4 +1,4 @@
-import newEntry from '../../../../domain/usecase/new_entry/newEntry';
+import { newEntry } from '../../../../domain/usecase/';
 import EntryRepositoryMemory from '../../../../infra/repository/EntryRepositoryMemory';
 
 var entry;
