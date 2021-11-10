@@ -1,6 +1,7 @@
 {
   "name": "iem",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "repository": "https://github.com/andrehideki/iem.git",
   "author": "andrehideki <andre.hkiw@gmail.com>",
@@ -14,7 +15,7 @@
   },
   "scripts": {
     "test": "jest",
-    "dev": "nodemon ./server.mjs"
+    "dev": "nodemon ./server.js"
   },
   "dependencies": {
     "express": "^4.17.1"
