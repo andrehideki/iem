@@ -1,4 +1,3 @@
-// const Entry = require('../../model/Entry.js');
 import Entry from '../../model/Entry';
 
 const newEntry = ({ name, description, date, value }, entryRepository) => {

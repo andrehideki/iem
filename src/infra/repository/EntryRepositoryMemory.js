@@ -1,4 +1,3 @@
-// const EntryRepository = require('../../domain/repository/EntryRepository.js')
 import EntryRepository from '../../domain/repository/EntryRepository';
 
 export default class extends EntryRepository {
@@ -17,5 +16,9 @@ export default class extends EntryRepository {
 
   find({ name }) {
     return this.entries.filter(e => e.name === name);
+  }
+
+  delete(id) {
+    this.entries = this.entries.filter(entry => entry.id !== id);
   }
 }

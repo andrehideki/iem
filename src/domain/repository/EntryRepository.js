@@ -1,4 +1,3 @@
-// module.exports = class {
 export default class {
   
   persist(entry) {
@@ -6,6 +5,10 @@ export default class {
   }
 
   find({ name }) {
+    throw new Error('not implemented');
+  }
+
+  delete(id) {
     throw new Error('not implemented');
   }
 }

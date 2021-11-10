@@ -1,4 +1,4 @@
-import newEntry from '../../../../domain/usecase/new_entry/newEntry';
+import deleteEntry from '../../../../domain/usecase/delete_entry/deleteEntry';
 import EntryRepositoryMemory from '../../../../infra/repository/EntryRepositoryMemory';
 
 var entry;
@@ -12,9 +12,11 @@ beforeEach(() => {
     description: '',
     date: new Date()
   }
+  entryRepository.persist(entry);
 });
 
 test('should register a new entry', () => {
-  newEntry(entry, entryRepository);
-  expect(entryRepository.find({ name: entry.name }).length).toBe(1);
-})
+  const entryTarget = entryRepository.find({ name: entry.name })[0];
+  deleteEntry(entryTarget.id, { entryRepository });
+  expect(entryRepository.find({ name: entry.name }).length).toBe(0);
+});
