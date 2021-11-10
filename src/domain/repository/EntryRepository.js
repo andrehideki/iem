@@ -1,5 +1,9 @@
 export default class {
   
+  getAll() {
+    throw new Error('not implemented');
+  }
+
   persist(entry) {
     throw new Error('not implemented');
   }

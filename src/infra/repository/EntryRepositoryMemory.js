@@ -8,6 +8,10 @@ export default class extends EntryRepository {
     super();
     this.entries = [];
   }
+
+  getAll() {
+    return this.entries;
+  }
   
   persist(entry) {
     entry.id = this.entries.length + 1;
