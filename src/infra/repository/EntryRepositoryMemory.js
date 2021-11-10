@@ -1,6 +1,7 @@
-const EntryRepository = require('../../domain/repository/EntryRepository.js')
+// const EntryRepository = require('../../domain/repository/EntryRepository.js')
+import EntryRepository from '../../domain/repository/EntryRepository';
 
-module.exports = class extends EntryRepository {
+export default class extends EntryRepository {
   
   entries;
 

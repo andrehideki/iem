@@ -1,5 +1,7 @@
-const newEntry = require('../../../../domain/usecase/new_entry/newEntry.js');
-const EntryRepositoryMemory = require('../../../../infra/repository/EntryRepositoryMemory.js');
+// const newEntry = require('../../../../domain/usecase/new_entry/newEntry.js');
+// const EntryRepositoryMemory = require('../../../../infra/repository/EntryRepositoryMemory.js');
+import newEntry from '../../../../domain/usecase/new_entry/newEntry';
+import EntryRepositoryMemory from '../../../../infra/repository/EntryRepositoryMemory';
 
 var entry;
 var entryRepository;

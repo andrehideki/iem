@@ -1,4 +1,5 @@
-module.exports = class {
+// module.exports = class {
+export default class {
   
   persist(entry) {
     throw new Error('not implemented');

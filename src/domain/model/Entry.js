@@ -1,4 +1,5 @@
-module.exports = class {
+// module.exp:orts = class {
+export default class {
   id;
   name; 
   description;
