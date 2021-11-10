@@ -1,3 +1,5 @@
+import eventEmitter from '../../eventEmitter';
+
 const tableEntries = {
   init(target) {
     target.innerHTML = `
@@ -11,6 +13,11 @@ const tableEntries = {
       </thead>
       <tbody></tbody>
     `;
+    eventEmitter.on('newEntry', tableEntries.loadEntries)
+  },
+
+  loadEntries() {
+    console.log('loading...')
   }
 }
 

@@ -1,3 +1,5 @@
+import eventEmitter from './eventEmitter';
+
 const formEntry = {
   init(target) {
     target.innerHTML = `
@@ -34,7 +36,7 @@ const formEntry = {
 
   addEntry(values) {
     console.log(values);
-    
+    eventEmitter.emit('newEntry');
   }
 }
 
