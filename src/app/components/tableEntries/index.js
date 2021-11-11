@@ -1,7 +1,7 @@
 import eventEmitter from '../../eventEmitter';
 
 const tableEntries = {
-  init(target) {
+  async init(target) {
     target.innerHTML = `
       <thead>
         <tr>
@@ -13,12 +13,26 @@ const tableEntries = {
       </thead>
       <tbody></tbody>
     `;
-    this.loadEntries();
-    eventEmitter.on('newEntry', tableEntries.loadEntries);
+    this.loadEntries(target);
+    eventEmitter.on('newEntry', () => tableEntries.loadEntries(target));
   },
 
-  loadEntries() {
-    fetch('entry').then(data => console.log(data))
+  async loadEntries(target) {
+    fetch('entry')
+      .then(data => data.json())
+      .then(entries => {
+        const tbody = target.querySelector('tbody');
+        tbody.innerHTML = `
+          ${entries.map(entry => `
+            <tr>
+              <td>${entry.name}</td>
+              <td>${entry.description}</td>
+              <td>${entry.date}</td>
+              <td>${entry.value}</td>
+            </tr>
+          `)} 
+        `
+      });
   }
 }
 

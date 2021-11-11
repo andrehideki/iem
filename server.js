@@ -3,11 +3,14 @@ import EntryRepositoryMemory from './src/infra/repository/EntryRepositoryMemory'
 
 import express from 'express';
 import path from 'path';
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = 3333;
 const entryRepository = new EntryRepositoryMemory();
 
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public/index.html'));
