@@ -1,4 +1,4 @@
-import { getEntries, newEntry } from '../../domain/usecase';
+import { getEntries, newEntry, getBalance } from '../../domain/usecase';
 import EntryRepositoryMemory from '../../infra/repository/EntryRepositoryMemory';
 import { Router } from 'express';
 
@@ -8,6 +8,14 @@ const router = Router();
 
 router.get('/entry', (req, res) => {
   res.send(getEntries({ entryRepository }));
+});
+
+router.get('/entry/balance', (req, res) => {
+  const { initialDate, endDate } = req.query;
+  res.send(getBalance({ 
+    initialDate: new Date(initialDate), 
+    endDate: new Date(endDate)
+  }, { entryRepository }));
 });
 
 router.post('/entry', (req, res) => {
