@@ -13,11 +13,12 @@ const tableEntries = {
       </thead>
       <tbody></tbody>
     `;
-    eventEmitter.on('newEntry', tableEntries.loadEntries)
+    this.loadEntries();
+    eventEmitter.on('newEntry', tableEntries.loadEntries);
   },
 
   loadEntries() {
-    console.log('loading...')
+    fetch('entry').then(data => console.log(data))
   }
 }
 

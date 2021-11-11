@@ -1,4 +1,5 @@
 import EntryRepository from '../../domain/repository/EntryRepository';
+import Entry from '../../domain/model/Entry';
 
 export default class extends EntryRepository {
   
@@ -7,6 +8,7 @@ export default class extends EntryRepository {
   constructor() {
     super();
     this.entries = [];
+    this.entries.push(new Entry({ id: 1, name: 'entry', description: 'none', date: new Date(), value: 100 }))
   }
 
   getAll() {
