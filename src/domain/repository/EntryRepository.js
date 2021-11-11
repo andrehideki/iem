@@ -8,7 +8,7 @@ export default class {
     throw new Error('not implemented');
   }
 
-  find({ name }) {
+  find({ name, period }) {
     throw new Error('not implemented');
   }
 

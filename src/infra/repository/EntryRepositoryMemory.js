@@ -20,8 +20,11 @@ export default class extends EntryRepository {
     this.entries.push(entry);
   }
 
-  find({ name }) {
-    return this.entries.filter(e => e.name === name);
+  find({ name, period }) {
+    return this.entries.filter(entry => 
+      (!name || entry.name === name) &&
+      (!period || period.isBetween(entry.date))
+    );
   }
 
   delete(id) {
