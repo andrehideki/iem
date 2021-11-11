@@ -30,7 +30,7 @@ const tableEntries = {
               <td>${entry.date}</td>
               <td>${entry.value}</td>
             </tr>
-          `)} 
+          `).join('')} 
         `
       });
   }
