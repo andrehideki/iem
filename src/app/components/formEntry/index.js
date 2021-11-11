@@ -1,7 +1,10 @@
 import eventEmitter from '../../eventEmitter';
 
 const formEntry = {
+  form: null,
+
   init(target) {
+    this.form = target;
     target.innerHTML = `
       <label>
         <span>Nome</span>
@@ -43,7 +46,17 @@ const formEntry = {
       },
       body: JSON.stringify(values)
     })
-    .then(() => eventEmitter.emit('newEntry'));
+    .then(() => {
+      formEntry.clear();
+      eventEmitter.emit('newEntry');
+    });
+  },
+
+  clear() {
+    const inputs = this.form.querySelectorAll('input');
+    for (let input of inputs) {
+      input.value = '';
+    }
   }
 }
 
