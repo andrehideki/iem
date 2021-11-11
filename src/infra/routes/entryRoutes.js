@@ -19,7 +19,13 @@ router.get('/entry/balance', (req, res) => {
 });
 
 router.post('/entry', (req, res) => {
-  newEntry(req.body, entryRepository);
+  const { 
+    name,
+    description,
+    date,
+    value
+  } = req.body;
+  newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0) }, entryRepository);
   res.send('');
 });
 
