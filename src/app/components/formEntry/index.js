@@ -1,4 +1,4 @@
-import eventEmitter from './eventEmitter';
+import eventEmitter from '../../eventEmitter';
 
 const formEntry = {
   init(target) {
@@ -35,8 +35,15 @@ const formEntry = {
   },
 
   addEntry(values) {
-    console.log(values);
-    eventEmitter.emit('newEntry');
+    fetch('entry', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+    .then(() => eventEmitter.emit('newEntry'));
   }
 }
 

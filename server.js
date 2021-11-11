@@ -1,4 +1,4 @@
-import { getEntries } from './src/domain/usecase';
+import { getEntries, newEntry } from './src/domain/usecase';
 import EntryRepositoryMemory from './src/infra/repository/EntryRepositoryMemory';
 
 import express from 'express';
@@ -18,6 +18,11 @@ app.get('/', (req, res) => {
 
 app.get('/entry', (req, res) => {
   res.send(getEntries({ entryRepository }));
+});
+
+app.post('/entry', (req, res) => {
+  newEntry(req.body, entryRepository);
+  res.send('');
 });
 
 app.get('/*', (req, res) => {

@@ -1,4 +1,4 @@
-import formEntry from './formEntry';
+import formEntry from './components/formEntry';
 import tableEntries from './components/tableEntries';
 
 
