@@ -15,7 +15,7 @@ beforeEach(() => {
   }
   entry2 = {
     name: 'Entry 2',
-    value: 50,
+    value: -50,
     description: '',
     date: new Date(2021, 0, 1)
   }
@@ -32,5 +32,7 @@ beforeEach(() => {
 
 test('should get balance', () => {
   const balance = getBalance({ initialDate: new Date(2021, 0, 1), endDate: new Date(2021, 0, 2) }, { entryRepository });
-  expect(balance.total).toBe(150);
+  expect(balance.total).toBe(50);
+  expect(balance.gain).toBe(100);
+  expect(balance.loss).toBe(-50);
 })
