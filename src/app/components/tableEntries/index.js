@@ -1,5 +1,6 @@
 import { getTodayDate, getLastDateOfCurrentMonth, getPeriodFromYearMonth } from '../../utils/date';
 import eventEmitter from '../../eventEmitter';
+import { deleteRequest } from '../../utils/ajax';
 
 const tableEntries = {
   async init(target) {
@@ -23,8 +24,11 @@ const tableEntries = {
     });
   },
 
+  deleteEntry(id) {
+    deleteRequest(`entry/${id}`).then(() => console.log('adsfoij'));
+  },
+
   async loadEntries(target, { initialDate, endDate}) {
-    console.log(`entry?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}`)
     fetch(`entry?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}`)
       .then(data => data.json())
       .then(entries => {
@@ -32,7 +36,6 @@ const tableEntries = {
         tbody.innerHTML = `
           ${entries.map(entry => `
             <tr>
-              <input type="hidden" value="${entry.id}" />
               <td>
                 <input value="${entry.name}" />
               </td>
@@ -46,11 +49,19 @@ const tableEntries = {
                 <input value="${entry.value}" />
               </td>
               <td>
-                <button>Excluir</button>
+                <button data-id="${ entry.id }">Excluir</button>
               </td>
             </tr>
           `).join('')} 
         `
+        for (let button of tbody.querySelectorAll('button')) {
+          button.addEventListener('click', ({ target }) => {
+            const id = target.dataset.id;
+            if (confirm('Você confirma exclusão?')) {
+              tableEntries.deleteEntry(id); 
+            }
+          })
+        }
       });
   }
 }

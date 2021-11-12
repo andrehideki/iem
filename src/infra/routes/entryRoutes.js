@@ -1,4 +1,4 @@
-import { getEntries, newEntry, getBalance } from '../../domain/usecase';
+import { getEntries, newEntry, getBalance, deleteEntry } from '../../domain/usecase';
 import EntryRepositoryMemory from '../../infra/repository/EntryRepositoryMemory';
 import { Router } from 'express';
 
@@ -31,6 +31,11 @@ router.post('/entry', (req, res) => {
   } = req.body;
   newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0) }, entryRepository);
   res.send('');
+});
+
+router.delete('/entry/:id', (req, res) => {
+  const id = parseInt(req.params.id || 0);
+  deleteEntry(id, { entryRepository })
 });
 
 export { router };
