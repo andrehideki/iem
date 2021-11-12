@@ -10,7 +10,9 @@ const formFilter = {
         <input id="month" type="month" name="month" value="${ getYearMonth() }"/>
       </label>
     `;
-    target.querySelector('[name="month"]').addEventListener('change', this.onChange);
+    const inputMonth = target.querySelector('[name="month"]');
+    inputMonth.addEventListener('change', this.onChange);
+    eventEmitter.on('newEntry', () => inputMonth.value = getYearMonth());
   },
 
   onChange(event) {

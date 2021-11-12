@@ -16,7 +16,7 @@ const tableEntries = {
       <tbody></tbody>
     `;
     this.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() });
-    eventEmitter.on('newEntry', () => tableEntries.loadEntries(target));
+    eventEmitter.on('newEntry', () => tableEntries.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() }));
     eventEmitter.on('periodChange', period => {
       const { initialDate, endDate } = getPeriodFromYearMonth(period);
       this.loadEntries(target, { initialDate, endDate })
