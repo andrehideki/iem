@@ -8,10 +8,10 @@ const eventEmitter = {
     this.events[event].push(callback);
   },
   
-  emit(event) {
+  emit(event, value) {
     if (!this.events[event]) return;
     for (let callback of this.events[event]) {
-      callback();
+      callback(value);
     }
   }
 }

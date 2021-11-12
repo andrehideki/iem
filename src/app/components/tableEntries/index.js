@@ -9,12 +9,14 @@ const tableEntries = {
           <th>Descrição</th>
           <th>Data</th>
           <th>Valor</th>
+          <th></th>
         </tr>
       </thead>
       <tbody></tbody>
     `;
     this.loadEntries(target);
     eventEmitter.on('newEntry', () => tableEntries.loadEntries(target));
+    eventEmitter.on('periodChange', period => console.log('fromTable', period));
   },
 
   async loadEntries(target) {
@@ -25,10 +27,22 @@ const tableEntries = {
         tbody.innerHTML = `
           ${entries.map(entry => `
             <tr>
-              <td>${entry.name}</td>
-              <td>${entry.description}</td>
-              <td>${entry.date}</td>
-              <td>${entry.value}</td>
+              <input type="hidden" value="${entry.id}" />
+              <td>
+                <input value="${entry.name}" />
+              </td>
+              <td>
+                <input value="${entry.description}" />
+              </td>
+              <td>
+                <input value="${entry.date}" />
+              </td>
+              <td>
+                <input value="${entry.value}" />
+              </td>
+              <td>
+                <button>Excluir</button>
+              </td>
             </tr>
           `).join('')} 
         `
