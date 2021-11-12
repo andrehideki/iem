@@ -1,3 +1,4 @@
+import { getTodayDate, getLastDateOfCurrentMonth, getPeriodFromYearMonth } from '../../utils/date';
 import eventEmitter from '../../eventEmitter';
 
 const tableEntries = {
@@ -14,13 +15,17 @@ const tableEntries = {
       </thead>
       <tbody></tbody>
     `;
-    this.loadEntries(target);
+    this.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() });
     eventEmitter.on('newEntry', () => tableEntries.loadEntries(target));
-    eventEmitter.on('periodChange', period => console.log('fromTable', period));
+    eventEmitter.on('periodChange', period => {
+      const { initialDate, endDate } = getPeriodFromYearMonth(period);
+      this.loadEntries(target, { initialDate, endDate })
+    });
   },
 
-  async loadEntries(target) {
-    fetch('entry')
+  async loadEntries(target, { initialDate, endDate}) {
+    console.log(`entry?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}`)
+    fetch(`entry?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}`)
       .then(data => data.json())
       .then(entries => {
         const tbody = target.querySelector('tbody');

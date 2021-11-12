@@ -9,6 +9,7 @@ export default class extends EntryRepository {
     super();
     this.entries = [];
     this.entries.push(new Entry({ id: 1, name: 'entry', description: 'none', date: new Date(), value: 100 }))
+    this.entries.push(new Entry({ id: 2, name: 'entry 2', description: 'none', date: new Date(2021, 0, 1), value: 100 }))
   }
 
   getAll() {

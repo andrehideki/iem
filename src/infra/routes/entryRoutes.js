@@ -7,7 +7,11 @@ const entryRepository = new EntryRepositoryMemory();
 const router = Router();
 
 router.get('/entry', (req, res) => {
-  res.send(getEntries({ entryRepository }));
+  const { initialDate, endDate } = req.query;
+  res.send(getEntries({ 
+    initialDate: !!initialDate? new Date(initialDate) : undefined,
+    endDate: !!endDate? new Date(endDate) : undefined
+  }, { entryRepository }));
 });
 
 router.get('/entry/balance', (req, res) => {
