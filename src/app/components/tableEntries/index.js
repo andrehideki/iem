@@ -43,7 +43,7 @@ const tableEntries = {
                 <input value="${entry.description}" />
               </td>
               <td>
-                <input value="${entry.date}" />
+                <input type="date" value="${ entry.date }" />
               </td>
               <td>
                 <input value="${entry.value}" />
