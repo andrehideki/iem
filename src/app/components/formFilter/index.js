@@ -1,4 +1,5 @@
 import eventEmitter from "../../eventEmitter";
+import { getYearMonth } from "../../utils/date";
 
 const formFilter = {
   
@@ -6,7 +7,7 @@ const formFilter = {
     target.innerHTML = `
       <label>
         <span>Periodicidade</span>
-        <input id="month" type="month" name="month"/>
+        <input id="month" type="month" name="month" value="${ getYearMonth() }"/>
       </label>
     `;
     target.querySelector('[name="month"]').addEventListener('change', this.onChange);

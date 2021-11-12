@@ -2,6 +2,10 @@ export function getTodayDate() {
   return new Date();
 }
 
+export function getYearMonth() {
+  return new Date().toISOString().substring(0, 7);
+}
+
 export function getLastDateOfCurrentMonth() {
   const totay = new Date();
   return new Date(totay.getFullYear(), totay.getMonth() + 1, 0);
