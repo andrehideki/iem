@@ -17,7 +17,7 @@ const tableEntries = {
       <tbody></tbody>
     `;
     this.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() });
-    eventEmitter.on('newEntry', () => tableEntries.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() }));
+    eventEmitter.on([ 'newEntry', 'deleteEntry' ], () => tableEntries.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() }));
     eventEmitter.on('periodChange', period => {
       const { initialDate, endDate } = getPeriodFromYearMonth(period);
       this.loadEntries(target, { initialDate, endDate })
@@ -25,7 +25,9 @@ const tableEntries = {
   },
 
   deleteEntry(id) {
-    deleteRequest(`entry/${id}`).then(() => console.log('adsfoij'));
+    deleteRequest(`entry/${id}`).then(() => {
+      eventEmitter.emit('deleteEntry')
+    });
   },
 
   async loadEntries(target, { initialDate, endDate}) {

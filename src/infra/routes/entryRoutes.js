@@ -35,7 +35,8 @@ router.post('/entry', (req, res) => {
 
 router.delete('/entry/:id', (req, res) => {
   const id = parseInt(req.params.id || 0);
-  deleteEntry(id, { entryRepository })
+  deleteEntry(id, { entryRepository });
+  res.status(200).send('');
 });
 
 export { router };

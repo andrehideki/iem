@@ -2,10 +2,13 @@ const eventEmitter = {
   events: {},
 
   on(event, callback) {
-    if (!this.events[event]) {
-      this.events[event] = [];
+    const events = Array.isArray(event)? event: [event];
+    for (let e of events) {
+      if (!this.events[e]) {
+        this.events[e] = [];
+      }
+      this.events[e].push(callback);
     }
-    this.events[event].push(callback);
   },
   
   emit(event, value) {
