@@ -12,7 +12,7 @@ const formFilter = {
     `;
     const inputMonth = target.querySelector('[name="month"]');
     inputMonth.addEventListener('change', this.onChange);
-    eventEmitter.on('newEntry', () => inputMonth.value = getYearMonth());
+    eventEmitter.on([ 'newEntry', 'deleteEntry' ], () => inputMonth.value = getYearMonth());
   },
 
   onChange(event) {
