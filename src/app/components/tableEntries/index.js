@@ -7,10 +7,10 @@ const tableEntries = {
     target.innerHTML = `
       <thead>
         <tr>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Data</th>
-          <th>Valor</th>
+          <th style="width: 25%">Nome</th>
+          <th style="width: 35%">Descrição</th>
+          <th style="width: 5%">Data</th>
+          <th style="width: 15%">Valor</th>
           <th></th>
         </tr>
       </thead>
@@ -39,19 +39,22 @@ const tableEntries = {
           ${entries.map(entry => `
             <tr>
               <td>
-                <input value="${entry.name}" />
+                <input value="${entry.name}" class="form-control form-control-sm" />
               </td>
               <td>
-                <input value="${entry.description}" />
+                <input value="${entry.description}" class="form-control form-control-sm" />
               </td>
               <td>
-                <input type="date" value="${ entry.date }" />
+                <input type="date" value="${ entry.date }" class="form-control form-control-sm" />
               </td>
               <td>
-                <input value="${entry.value}" />
+                <input value="${entry.value}" class="form-control form-control-sm" />
               </td>
               <td>
-                <button data-id="${ entry.id }">Excluir</button>
+                <button data-id="${ entry.id }" class="btn btn-outline-danger btn-sm">
+                  <i class="bi bi-trash"></i>
+                  Excluir
+                </button>
               </td>
             </tr>
           `).join('')} 

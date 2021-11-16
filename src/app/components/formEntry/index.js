@@ -6,23 +6,30 @@ const formEntry = {
   init(target) {
     this.form = target;
     target.innerHTML = `
-      <label>
-        <span>Nome</span>
-        <input id="name" name="name"/>
-      </label>
-      <label>
-        <span>Descrição</span>
-        <input id="description" name="description"/>
-      </label>
-      <label>
-        <span>Data</span>
-        <input id="date" type="date" name="date"/>
-      </label>
-      <label>
-        <span>Valor</span>
-        <input id="value" type="number" name="value"/>
-      </label>
-      <button>add</button>
+      <div class="row">
+        <div class="col">
+          <label>Nome</label>
+          <input id="name" name="name" class="form-control form-control-sm" />
+        </div>
+        <div class="col">
+          <label>Descrição</label>
+          <input id="description" name="description" class="form-control form-control-sm"/>
+        </div>
+        <div class="col">
+          <label>Data</label>
+          <input id="date" type="date" name="date" class="form-control form-control-sm"/>
+        </div>
+        <div class="col">
+          <label>Valor</label>
+          <input id="value" type="number" name="value" class="form-control form-control-sm"/>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary mt-3">
+            <i class="bi bi-plus"></i>
+            add
+          </button>
+        </div>
+      </div>
     `;
     target.addEventListener('submit', formEntry.onSubmit);
   },

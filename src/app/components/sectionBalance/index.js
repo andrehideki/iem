@@ -1,14 +1,15 @@
 import eventEmitter from "../../eventEmitter";
+import { getLastDateOfCurrentMonth, getTodayDate } from "../../utils/date";
 
 const sectionBalance = {
   
   init(target) {
-    this.getBalance(target);
-    eventEmitter.on('newEntry', () => this.getBalance(target));
+    this.getBalance(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() });
+    eventEmitter.on(['newEntry', 'deleteEntry'], () => this.getBalance(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() }));
   },
 
-  getBalance(target) {
-    fetch(`/entry/balance?initialDate=2021-11-01&endDate=2021-12-01`)
+  getBalance(target, { initialDate, endDate }) {
+    fetch(`/entry/balance?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}`)
     .then(data => data.json())
     .then(balance => {
       target.innerHTML = `

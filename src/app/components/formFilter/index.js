@@ -7,7 +7,7 @@ const formFilter = {
     target.innerHTML = `
       <label>
         <span>Periodicidade</span>
-        <input id="month" type="month" name="month" value="${ getYearMonth() }"/>
+        <input id="month" type="month" name="month" value="${ getYearMonth() }" class="form-control mb-2" />
       </label>
     `;
     const inputMonth = target.querySelector('[name="month"]');
