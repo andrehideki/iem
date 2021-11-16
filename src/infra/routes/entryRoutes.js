@@ -17,12 +17,13 @@ router.get('/entry', async (req, res) => {
   res.send(entries);
 });
 
-router.get('/entry/balance', (req, res) => {
+router.get('/entry/balance', async (req, res) => {
   const { initialDate, endDate } = req.query;
-  res.send(getBalance({ 
+  const balance = await getBalance({ 
     initialDate: new Date(initialDate), 
     endDate: new Date(endDate)
-  }, { entryRepository }));
+    }, { entryRepository });
+  res.send(balance);
 });
 
 router.post('/entry', async (req, res) => {
