@@ -12,6 +12,20 @@ export default class extends EntryRepository {
     this.entryMapper = entryMapper;
   }
 
+  async get(id) {
+    const mapper = await this.entryMapper.findOne({
+      where: { id: id }
+    });
+    return !!mapper? 
+      new Entry({ 
+        id: mapper.id, 
+        name: mapper.name || '',
+        description: mapper.description || '',
+        value: mapper.value,
+        date: mapper.date
+      }) : undefined;
+  }
+
   async getAll() {
     const mappers = await this.entryMapper.findAll();
     return mappers.map(mapper => {
@@ -32,7 +46,18 @@ export default class extends EntryRepository {
       date: entry.date,
       value: entry.value
     });
-    mapper.save();
+    await mapper.save();
+  }
+
+  async update(entry) {
+    const mapper = await this.entryMapper.findOne({
+      where: { id: entry.id }
+    });
+    mapper.name = entry.name;
+    mapper.description = entry.description;
+    mapper.value = entry.value;
+    mapper.date = entry.date;
+    await mapper.save();
   }
 
   async find({ name, period }) {
