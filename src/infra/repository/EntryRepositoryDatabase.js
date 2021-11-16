@@ -54,7 +54,12 @@ export default class extends EntryRepository {
     })
   }
 
-  delete(id) {
-    this.entries = this.entries.filter(entry => entry.id !== id);
+  async delete(id) {
+    const entry = await this.entryMapper.findOne({
+      where: { id: id }
+    });
+    if (!!entry) {
+      await entry.destroy();
+    }
   }
 }

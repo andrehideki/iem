@@ -32,9 +32,9 @@ router.post('/entry', async (req, res) => {
   res.send('');
 });
 
-router.delete('/entry/:id', (req, res) => {
+router.delete('/entry/:id', async (req, res) => {
   const id = parseInt(req.params.id || 0);
-  deleteEntry(id, { entryRepository });
+  await deleteEntry(id, { entryRepository });
   res.status(200).send('');
 });
 
