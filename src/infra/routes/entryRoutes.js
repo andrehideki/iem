@@ -1,8 +1,12 @@
+import path from 'path';
 import { getEntries, newEntry, getBalance, deleteEntry } from '../../domain/usecase';
 import EntryRepositoryMemory from '../../infra/repository/EntryRepositoryMemory';
 import { Router } from 'express';
+import EntryRepositoryLowdb from '../repository/EntryRepositoryLowdb';
+import { DatabaseClient } from '../lowdb/DatabaseClient';
 
-const entryRepository = new EntryRepositoryMemory();
+const databaseClient = new DatabaseClient(path.resolve(__dirname, 'db.json'));
+const entryRepository = new EntryRepositoryLowdb(databaseClient);
 
 const router = Router();
 
