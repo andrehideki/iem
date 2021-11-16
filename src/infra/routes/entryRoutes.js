@@ -1,21 +1,20 @@
-import path from 'path';
 import { getEntries, newEntry, getBalance, deleteEntry } from '../../domain/usecase';
-import EntryRepositoryMemory from '../../infra/repository/EntryRepositoryMemory';
 import { Router } from 'express';
-import EntryRepositoryLowdb from '../repository/EntryRepositoryLowdb';
-import { DatabaseClient } from '../lowdb/DatabaseClient';
+import EntryMapper from '../mapper/EntryMapper';
+import EntryRepositoryDatabase from '../repository/EntryRepositoryDatabase';
 
-const databaseClient = new DatabaseClient(path.resolve(__dirname, 'db.json'));
-const entryRepository = new EntryRepositoryLowdb(databaseClient);
+
+const entryRepository = new EntryRepositoryDatabase(EntryMapper);
 
 const router = Router();
 
-router.get('/entry', (req, res) => {
+router.get('/entry', async (req, res) => {
   const { initialDate, endDate } = req.query;
-  res.send(getEntries({ 
+  const entries = await getEntries({ 
     initialDate: !!initialDate? new Date(initialDate) : undefined,
     endDate: !!endDate? new Date(endDate) : undefined
-  }, { entryRepository }));
+  }, { entryRepository });
+  res.send(entries);
 });
 
 router.get('/entry/balance', (req, res) => {

@@ -9,7 +9,7 @@ class DatabaseClient {
       if (!DatabaseClient.sequelize) DatabaseClient.sequelize = new Sequelize('postgres://postgres:root@localhost:5432/iem');
       return DatabaseClient.sequelize;
     } catch (error) {
-      console.error('Unable to connect to the database:', error);
+      throw new Error(error);
     }
   }
 }
