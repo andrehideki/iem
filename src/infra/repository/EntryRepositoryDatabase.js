@@ -25,9 +25,14 @@ export default class extends EntryRepository {
     })
   }
   
-  persist(entry) {
-    entry.id = this.entries.length + 1;
-    this.entries.push(entry);
+  async persist(entry) {
+    const mapper = this.entryMapper.build({
+      name: entry.name || '',
+      description: entry.description || '',
+      date: entry.date,
+      value: entry.value
+    });
+    mapper.save();
   }
 
   async find({ name, period }) {

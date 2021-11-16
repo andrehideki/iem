@@ -3,7 +3,6 @@ import Period from '../../model/Period';
 const getEntries = async ({ initialDate, endDate }, { entryRepository }) => {
   const period = (!!initialDate && !!endDate)? new Period({ initialDate, endDate }) : undefined;
   const entries = await entryRepository.find({ period: period });
-  console.log('1', entries)
   entries.map(entry => {
       return {
         id: entry.id,
@@ -13,7 +12,6 @@ const getEntries = async ({ initialDate, endDate }, { entryRepository }) => {
         value: entry.value
       }
     });
-  console.log('asdf', entries)
   return entries;
 }
 

@@ -25,14 +25,9 @@ router.get('/entry/balance', (req, res) => {
   }, { entryRepository }));
 });
 
-router.post('/entry', (req, res) => {
-  const { 
-    name,
-    description,
-    date,
-    value
-  } = req.body;
-  newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0) }, entryRepository);
+router.post('/entry', async (req, res) => {
+  const { name, description, date, value } = req.body;
+  await newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0) }, entryRepository);
   res.send('');
 });
 
