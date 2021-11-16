@@ -38,17 +38,18 @@ const tableEntries = {
         tbody.innerHTML = `
           ${entries.map(entry => `
             <tr>
+              <input type="hidden" name="id" value="${entry.id}" />
               <td>
-                <input value="${entry.name}" class="form-control form-control-sm" />
+                <input name="name" value="${entry.name}" class="form-control form-control-sm updateEntry" />
               </td>
               <td>
-                <input value="${entry.description}" class="form-control form-control-sm" />
+                <input name="description" value="${entry.description}" class="form-control form-control-sm updateEntry" />
               </td>
               <td>
-                <input type="date" value="${ entry.date }" class="form-control form-control-sm" />
+                <input type="date" name="date" value="${ entry.date }" class="form-control form-control-sm updateEntry" />
               </td>
               <td>
-                <input value="${entry.value}" class="form-control form-control-sm" />
+                <input name="value" value="${entry.value}" class="form-control form-control-sm updateEntry" />
               </td>
               <td>
                 <button data-id="${ entry.id }" class="btn btn-outline-danger btn-sm">
@@ -58,7 +59,7 @@ const tableEntries = {
               </td>
             </tr>
           `).join('')} 
-        `
+        `;
         for (let button of tbody.querySelectorAll('button')) {
           button.addEventListener('click', ({ target }) => {
             const id = target.dataset.id;
@@ -66,6 +67,26 @@ const tableEntries = {
               tableEntries.deleteEntry(id); 
             }
           })
+        }
+        for (let action of tbody.querySelectorAll('.updateEntry')) {
+          action.addEventListener('blur', () => {
+            const inputs = action.parentElement.parentElement.querySelectorAll('input');
+            const values = {};
+            for (let input of inputs) {
+              values[input.name] = input.value || '';
+            }
+            fetch(`entry/${values.id}`, {
+              method: 'PUT',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(values)
+            })
+            .then(() => {
+              eventEmitter.emit('updateEntry');
+            });
+          });
         }
       });
   }
