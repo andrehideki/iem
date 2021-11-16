@@ -1,10 +1,9 @@
-"use strict";
-
 import DatabaseClient from "../../../infra/database/DatabaseClient"
+import EntryMapper from "../../../infra/mapper/EntryMapper";
 
-
-const client = new DatabaseClient(); ;
 
 test('should connect', async () => {
-  await client.connect();
+  let client = DatabaseClient.connect();
+  const result = await client.sync();
+  console.log(result)
 });

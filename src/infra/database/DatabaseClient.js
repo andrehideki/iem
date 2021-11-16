@@ -1,15 +1,17 @@
 import { Sequelize } from "sequelize";
 
-export default class {
+class DatabaseClient {
   
-  async connect() {
+  static sequelize = null;
+
+  static connect() {
     try {
-      const sequelize = new Sequelize('postgres://postgres:root@localhost:5432/iem');
-      await sequelize.authenticate();
-      sequelize.close();
-      console.log('Connection has been established successfully.');
+      if (!DatabaseClient.sequelize) DatabaseClient.sequelize = new Sequelize('postgres://postgres:root@localhost:5432/iem');
+      return DatabaseClient.sequelize;
     } catch (error) {
       console.error('Unable to connect to the database:', error);
     }
   }
 }
+
+export default DatabaseClient;
