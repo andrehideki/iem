@@ -1,9 +1,8 @@
 import Period from '../../model/Period';
 
-const getEntries = async ({ initialDate, endDate }, { entryRepository }) => {
+const getEntries = async ({ initialDate, endDate, account }, { entryRepository }) => {
   const period = (!!initialDate && !!endDate)? new Period({ initialDate, endDate }) : undefined;
-  console.log(await entryRepository.getAll())
-  const entryMappers = await entryRepository.find({ period: period });
+  const entryMappers = await entryRepository.find({ period: period, account });
   const entries = entryMappers.map(entry => {
     return {
       id: entry.id,

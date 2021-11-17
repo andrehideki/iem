@@ -23,6 +23,11 @@ export default class extends EntryRepository {
     const mappers = await this.entryMapper.findAll();
     return mappers.map(mapper => this.toEntry(mapper));
   }
+
+  async getAllAccounts() {
+    const accounts = await this.entryMapper.aggregate('account', 'DISTINCT', { plain: false });
+    return accounts.map(account => account.DISTINCT);
+  }
   
   async persist(entry) {
     const mapper = this.entryMapper.build({
@@ -47,7 +52,7 @@ export default class extends EntryRepository {
     await mapper.save();
   }
 
-  async find({ name, period }) {
+  async find({ name, period, account }) {
     const mappers = await this.entryMapper.findAll({
       where: {
         date: {

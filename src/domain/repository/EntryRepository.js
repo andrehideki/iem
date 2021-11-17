@@ -8,6 +8,10 @@ export default class {
     throw new Error('not implemented');
   }
 
+  getAllAccounts() {
+    throw new Error('not implemented');
+  }
+
   persist(entry) {
     throw new Error('not implemented');
   }

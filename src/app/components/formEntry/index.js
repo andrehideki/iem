@@ -16,6 +16,10 @@ const formEntry = {
           <input id="description" name="description" class="form-control form-control-sm"/>
         </div>
         <div class="col">
+          <label>Conta</label>
+          <input id="account" name="account" class="form-control form-control-sm"/>
+        </div>
+        <div class="col">
           <label>Data</label>
           <input id="date" type="date" name="date" class="form-control form-control-sm"/>
         </div>
