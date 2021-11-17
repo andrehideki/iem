@@ -41,6 +41,7 @@ export default class extends EntryRepository {
     });
     mapper.name = entry.name;
     mapper.description = entry.description;
+    mapper.account = entry.account;
     mapper.value = entry.value;
     mapper.date = entry.date.toISOString().substring(0, 10);
     await mapper.save();
@@ -72,6 +73,7 @@ export default class extends EntryRepository {
       name: mapper.name || '',
       description: mapper.description || '',
       value: mapper.value,
+      account: mapper.account || '',
       date: new Date(mapper.date)
     })
   }

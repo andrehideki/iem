@@ -27,15 +27,15 @@ router.get('/entry/balance', async (req, res) => {
 });
 
 router.post('/entry', async (req, res) => {
-  const { name, description, date, value } = req.body;
-  await newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0) }, entryRepository);
+  const { name, description, date, value, account } = req.body;
+  await newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0), account }, entryRepository);
   res.status(201).send('');
 });
 
 router.put('/entry/:id', async (req, res) => {
   const id = parseInt(req.params.id || 0);
-  const { name, description, date, value } = req.body;
-  await updateEntry({ id, name, description, date: new Date(date), value: parseFloat(value || 0) }, entryRepository);
+  const { name, description, date, value, account } = req.body;
+  await updateEntry({ id, name, description, date: new Date(date), value: parseFloat(value || 0), account }, entryRepository);
   res.status(200).send('');
 });
 

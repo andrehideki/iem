@@ -8,6 +8,7 @@ const getEntries = async ({ initialDate, endDate }, { entryRepository }) => {
     return {
       id: entry.id,
       name: entry.name,
+      account: entry.account,
       description: entry.description,
       date: entry.date.toISOString().substring(0, 10),
       value: entry.value
