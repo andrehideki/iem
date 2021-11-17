@@ -1,15 +1,24 @@
 import eventEmitter from "../../eventEmitter";
-import { getFirstDateOfCurrentMonth, getLastDateOfCurrentMonth } from "../../utils/date";
+import { getRequest } from "../../utils/ajax";
+import { getFirstDateOfCurrentMonth, getLastDateOfCurrentMonth, getPeriodFromYearMonth } from "../../utils/date";
+import context from "../context";
 
 const sectionBalance = {
   
   init(target) {
-    this.getBalance(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() });
-    eventEmitter.on(['newEntry', 'deleteEntry', 'updateEntry'], () => this.getBalance(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() }));
+    const { initialDate, endDate } = getPeriodFromYearMonth(context.filter.month);
+    const { account } = context.filter;
+    this.getBalance(target, { initialDate, endDate, account });
+    eventEmitter.on(['newEntry', 'deleteEntry', 'updateEntry', 'filterChange'], () => {
+      const { initialDate, endDate } = getPeriodFromYearMonth(context.filter.month);
+      const { account } = context.filter;
+      this.getBalance(target, { initialDate, endDate, account })
+    });
   },
 
-  getBalance(target, { initialDate, endDate }) {
-    fetch(`/entry/balance?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}`)
+  getBalance(target, { initialDate, endDate, account }) {
+    // fetch(`/entry/balance?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}&account=${account}`)
+    getRequest('/entry/balance', { initialDate, endDate, account })
     .then(data => data.json())
     .then(balance => {
       target.innerHTML = `

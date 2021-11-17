@@ -1,13 +1,9 @@
 import eventEmitter from "../../eventEmitter";
 import { getYearMonth } from "../../utils/date";
+import context from "../context";
 
 const formFilter = {
   
-  values: {
-    month: getYearMonth(),
-    account: ''
-  },
-
   init(target) {
     fetch('account')
       .then(data => data.json())
@@ -16,11 +12,11 @@ const formFilter = {
           <div class="row">
             <div class="col-3">
               <label>Periodicidade</label>
-              <input id="month" type="month" name="month" value="${ getYearMonth() }" class="form-control form-control-sm mb-2" />
+              <input id="month" type="month" name="month" value="${ context.filter.month }" class="form-control form-control-sm mb-2" />
             </div>
             <div class="col-2">
               <label>Conta</label>
-              <select name="account" class="form-control form-control-sm">
+              <select name="account" value="${ context.filter.account }" class="form-control form-control-sm">
                 <option value="">Todos</option>
                 ${accounts.map(account => (
                   `<option value="${account}">${account}</option>`
@@ -39,8 +35,8 @@ const formFilter = {
 
   onChange(event) {
     const { name, value } = event.target;
-    formFilter.values[name] = value;
-    eventEmitter.emit('filterChange', formFilter.values);
+    context.filter[name] = value;
+    eventEmitter.emit('filterChange', context.filter);
   }
 }
 

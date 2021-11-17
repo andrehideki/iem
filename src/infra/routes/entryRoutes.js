@@ -19,10 +19,11 @@ router.get('/entry', async (req, res) => {
 });
 
 router.get('/entry/balance', async (req, res) => {
-  const { initialDate, endDate } = req.query;
+  const { initialDate, endDate, account } = req.query;
   const balance = await getBalance({
     initialDate: new Date(initialDate), 
-    endDate: new Date(endDate)
+    endDate: new Date(endDate),
+    account: account || ''
     }, { entryRepository });
   res.send(balance);
 });
