@@ -16,27 +16,12 @@ export default class extends EntryRepository {
     const mapper = await this.entryMapper.findOne({
       where: { id: id }
     });
-    return !!mapper? 
-      new Entry({ 
-        id: mapper.id, 
-        name: mapper.name || '',
-        description: mapper.description || '',
-        value: mapper.value,
-        date: mapper.date
-      }) : undefined;
+    return !!mapper? this.toEntry(mapper) : undefined;
   }
 
   async getAll() {
     const mappers = await this.entryMapper.findAll();
-    return mappers.map(mapper => {
-      return new Entry({ 
-        id: mapper.id, 
-        name: mapper.name || '',
-        description: mapper.description || '',
-        value: mapper.value,
-        date: mapper.date
-      })
-    })
+    return mappers.map(mapper => this.toEntry(mapper));
   }
   
   async persist(entry) {
@@ -56,7 +41,7 @@ export default class extends EntryRepository {
     mapper.name = entry.name;
     mapper.description = entry.description;
     mapper.value = entry.value;
-    mapper.date = entry.date;
+    mapper.date = entry.date.toISOString().substring(0, 10);
     await mapper.save();
   }
 
@@ -64,19 +49,11 @@ export default class extends EntryRepository {
     const mappers = await this.entryMapper.findAll({
       where: {
         date: {
-          [Op.between]: [ period.initialDate, period.endDate ]
+          [Op.between]: [ period.initialDate.toISOString().substring(0, 10), period.endDate.toISOString().substring(0, 10) ]
         }
       }
     }) || [];
-    return mappers.map(mapper => {
-      return new Entry({ 
-        id: mapper.id, 
-        name: mapper.name || '',
-        description: mapper.description || '',
-        value: mapper.value,
-        date: mapper.date
-      })
-    })
+    return mappers.map(mapper => this.toEntry(mapper));
   }
 
   async delete(id) {
@@ -86,5 +63,15 @@ export default class extends EntryRepository {
     if (!!entry) {
       await entry.destroy();
     }
+  }
+
+  toEntry(mapper) {
+    return new Entry({ 
+      id: mapper.id, 
+      name: mapper.name || '',
+      description: mapper.description || '',
+      value: mapper.value,
+      date: new Date(mapper.date)
+    })
   }
 }

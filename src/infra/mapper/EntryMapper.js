@@ -28,7 +28,7 @@ const EntryMapper = database.define('entry', {
   },
 
   date: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false
   }
 });

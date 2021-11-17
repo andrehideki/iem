@@ -1,4 +1,4 @@
-import { getTodayDate, getLastDateOfCurrentMonth, getPeriodFromYearMonth } from '../../utils/date';
+import { getTodayDate, getLastDateOfCurrentMonth, getPeriodFromYearMonth, getFirstDateOfCurrentMonth } from '../../utils/date';
 import eventEmitter from '../../eventEmitter';
 import { deleteRequest } from '../../utils/ajax';
 
@@ -16,8 +16,8 @@ const tableEntries = {
       </thead>
       <tbody></tbody>
     `;
-    this.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() });
-    eventEmitter.on([ 'newEntry', 'deleteEntry' ], () => tableEntries.loadEntries(target, { initialDate: getTodayDate(), endDate: getLastDateOfCurrentMonth() }));
+    this.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() });
+    eventEmitter.on([ 'newEntry', 'deleteEntry' ], () => tableEntries.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() }));
     eventEmitter.on('periodChange', period => {
       const { initialDate, endDate } = getPeriodFromYearMonth(period);
       this.loadEntries(target, { initialDate, endDate })

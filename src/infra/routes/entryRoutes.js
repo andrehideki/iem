@@ -34,7 +34,6 @@ router.post('/entry', async (req, res) => {
 
 router.put('/entry/:id', async (req, res) => {
   const id = parseInt(req.params.id || 0);
-  console.log('id', id, req.params.id)
   const { name, description, date, value } = req.body;
   await updateEntry({ id, name, description, date: new Date(date), value: parseFloat(value || 0) }, entryRepository);
   res.status(200).send('');
