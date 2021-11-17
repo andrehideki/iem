@@ -19,7 +19,7 @@ router.get('/entry', async (req, res) => {
 
 router.get('/entry/balance', async (req, res) => {
   const { initialDate, endDate } = req.query;
-  const balance = await getBalance({ 
+  const balance = await getBalance({
     initialDate: new Date(initialDate), 
     endDate: new Date(endDate)
     }, { entryRepository });

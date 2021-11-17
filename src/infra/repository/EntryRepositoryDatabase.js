@@ -29,7 +29,8 @@ export default class extends EntryRepository {
       name: entry.name || '',
       description: entry.description || '',
       date: entry.date,
-      value: entry.value
+      value: entry.value,
+      account: entry.account
     });
     await mapper.save();
   }

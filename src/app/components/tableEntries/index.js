@@ -69,7 +69,7 @@ const tableEntries = {
           })
         }
         for (let action of tbody.querySelectorAll('.updateEntry')) {
-          action.addEventListener('blur', () => {
+          action.addEventListener('change', () => {
             const inputs = action.parentElement.parentElement.querySelectorAll('input');
             const values = {};
             for (let input of inputs) {

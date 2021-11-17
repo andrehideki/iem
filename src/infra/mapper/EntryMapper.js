@@ -30,7 +30,14 @@ const EntryMapper = database.define('entry', {
   date: {
     type: DataTypes.DATEONLY,
     allowNull: false
+  },
+
+  account: {
+    type: DataTypes.STRING(100),
+    allowNull: false
   }
 });
+
+ database.sync();
 
 export default EntryMapper;
