@@ -58,7 +58,7 @@ const tableEntries = {
               </td>
               <td>
                 <button data-id="${ entry.id }" class="btn btn-outline-danger btn-sm">
-                <i class="bi bi-trash2-fill"></i>
+                  <i class="bi bi-trash2-fill"></i>
                 </button>
               </td>
             </tr>
@@ -66,7 +66,8 @@ const tableEntries = {
         `;
         for (let button of tbody.querySelectorAll('button')) {
           button.addEventListener('click', ({ target }) => {
-            const id = target.dataset.id;
+            console.log(button)
+            const id = button.dataset.id;
             if (confirm('Você confirma exclusão?')) {
               tableEntries.deleteEntry(id); 
             }
