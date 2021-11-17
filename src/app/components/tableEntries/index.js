@@ -17,8 +17,8 @@ const tableEntries = {
       </thead>
       <tbody></tbody>
     `;
-    this.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() });
-    eventEmitter.on([ 'newEntry', 'deleteEntry' ], () => tableEntries.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() }));
+    this.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth(), account: '' });
+    eventEmitter.on([ 'newEntry', 'deleteEntry' ], () => tableEntries.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth(), account: '' }));
     eventEmitter.on('filterChange', filterValues => {
       const { initialDate, endDate } = getPeriodFromYearMonth(filterValues.month);
       const { account } = filterValues;
@@ -32,8 +32,8 @@ const tableEntries = {
     });
   },
 
-  async loadEntries(target, { initialDate, endDate}) {
-    fetch(`entry?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}`)
+  async loadEntries(target, { initialDate, endDate, account }) {
+    fetch(`entry?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}&account=${account}`)
       .then(data => data.json())
       .then(entries => {
         const tbody = target.querySelector('tbody');

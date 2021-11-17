@@ -55,9 +55,17 @@ export default class extends EntryRepository {
   async find({ name, period, account }) {
     const mappers = await this.entryMapper.findAll({
       where: {
-        date: {
-          [Op.between]: [ period.initialDate.toISOString().substring(0, 10), period.endDate.toISOString().substring(0, 10) ]
-        }
+        [Op.and]: [
+          {
+            date: {
+              [Op.between]: [ period.initialDate.toISOString().substring(0, 10), period.endDate.toISOString().substring(0, 10) ]
+            }
+          }, {
+            account: {
+              [Op.like]: `%${account}%`
+            }
+          }
+        ],
       }
     }) || [];
     return mappers.map(mapper => this.toEntry(mapper));

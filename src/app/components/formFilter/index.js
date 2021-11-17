@@ -39,8 +39,8 @@ const formFilter = {
 
   onChange(event) {
     const { name, value } = event.target;
-    this.values = { ...this.values, [name]: value }; 
-    eventEmitter.emit('filterChange', this.values);
+    formFilter.values[name] = value;
+    eventEmitter.emit('filterChange', formFilter.values);
   }
 }
 

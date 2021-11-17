@@ -9,10 +9,11 @@ const entryRepository = new EntryRepositoryDatabase(EntryMapper);
 const router = Router();
 
 router.get('/entry', async (req, res) => {
-  const { initialDate, endDate } = req.query;
+  const { initialDate, endDate, account } = req.query;
   const entries = await getEntries({ 
     initialDate: !!initialDate? new Date(initialDate) : undefined,
-    endDate: !!endDate? new Date(endDate) : undefined
+    endDate: !!endDate? new Date(endDate) : undefined,
+    account: account || ''
   }, { entryRepository });
   res.send(entries);
 });
