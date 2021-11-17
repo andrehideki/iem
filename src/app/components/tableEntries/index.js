@@ -19,9 +19,10 @@ const tableEntries = {
     `;
     this.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() });
     eventEmitter.on([ 'newEntry', 'deleteEntry' ], () => tableEntries.loadEntries(target, { initialDate: getFirstDateOfCurrentMonth(), endDate: getLastDateOfCurrentMonth() }));
-    eventEmitter.on('periodChange', period => {
-      const { initialDate, endDate } = getPeriodFromYearMonth(period);
-      this.loadEntries(target, { initialDate, endDate })
+    eventEmitter.on('filterChange', filterValues => {
+      const { initialDate, endDate } = getPeriodFromYearMonth(filterValues.month);
+      const { account } = filterValues;
+      this.loadEntries(target, { initialDate, endDate, account })
     });
   },
 
@@ -57,8 +58,7 @@ const tableEntries = {
               </td>
               <td>
                 <button data-id="${ entry.id }" class="btn btn-outline-danger btn-sm">
-                  <i class="bi bi-trash"></i>
-                  Excluir
+                <i class="bi bi-trash2-fill"></i>
                 </button>
               </td>
             </tr>
