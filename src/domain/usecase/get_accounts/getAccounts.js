@@ -1,5 +1,11 @@
 const getAccounts = async ({ entryRepository }) => {
-  return await entryRepository.getAllAccounts();
+  const accounts = await entryRepository.getAllAccounts();
+  return accounts.map(account => {
+    return {
+      name: account,
+      balance: 0
+    }
+  });
 }
 
 export default getAccounts;

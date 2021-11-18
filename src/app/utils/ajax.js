@@ -5,10 +5,10 @@ export function deleteRequest(url) {
 }
 
 export function getRequest(url, params) {
-  const queryParams = Object.keys(params)
-    .map(key => `${key}=${convertToParamValue(params[key])}`)
-    .join('&');
-  return fetch(`${url}?${queryParams}`);
+  if (!params) {
+    return fetch(url);
+  }
+  return fetch(`${url}?${Object.keys(params).map(key => `${key}=${convertToParamValue(params[key])}`).join('&')}`);
 }
 
 function convertToParamValue(value) {

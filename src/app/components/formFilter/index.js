@@ -19,7 +19,7 @@ const formFilter = {
               <select name="account" value="${ context.filter.account }" class="form-control form-control-sm">
                 <option value="">Todos</option>
                 ${accounts.map(account => (
-                  `<option value="${account}">${account}</option>`
+                  `<option value="${account.name}">${account.name}</option>`
                  )).join('')}
               </select>
             </div>
