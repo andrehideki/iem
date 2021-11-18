@@ -1,6 +1,6 @@
 
 import { formEntry, tableEntries, sectionBalance, formFilter } from './components';
-import secionAccounts from './components/accounts_section';
+import secionAccounts from './components/sectionAccounts';
 
 const $formEntry = document.querySelector('#form_entry');
 formEntry.init($formEntry);

@@ -8,7 +8,6 @@ export default class extends EntryRepository {
 
   constructor(entryMapper) {
     super();
-    this.entries = [];
     this.entryMapper = entryMapper;
   }
 
