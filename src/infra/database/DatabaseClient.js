@@ -6,7 +6,9 @@ class DatabaseClient {
 
   static connect() {
     try {
-      if (!DatabaseClient.sequelize) DatabaseClient.sequelize = new Sequelize('postgres://postgres:root@localhost:5432/iem');
+      if (!DatabaseClient.sequelize) DatabaseClient.sequelize = new Sequelize('postgres://postgres:root@localhost:5432/iem', {
+        logging: false
+      });
       return DatabaseClient.sequelize;
     } catch (error) {
       throw new Error(error);

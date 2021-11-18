@@ -1,6 +1,6 @@
 import eventEmitter from "../../eventEmitter";
 import { getRequest } from "../../utils/ajax";
-import { getFirstDateOfCurrentMonth, getLastDateOfCurrentMonth, getPeriodFromYearMonth } from "../../utils/date";
+import { getPeriodFromYearMonth } from "../../utils/date";
 import context from "../context";
 
 const sectionBalance = {
@@ -9,7 +9,8 @@ const sectionBalance = {
     const { initialDate, endDate } = getPeriodFromYearMonth(context.filter.month);
     const { account } = context.filter;
     this.getBalance(target, { initialDate, endDate, account });
-    eventEmitter.on(['newEntry', 'deleteEntry', 'updateEntry', 'filterChange'], () => {
+    const triggerEvents = ['newEntry', 'deleteEntry', 'updateEntry', 'filterChange'];
+    eventEmitter.on(triggerEvents, () => {
       const { initialDate, endDate } = getPeriodFromYearMonth(context.filter.month);
       const { account } = context.filter;
       this.getBalance(target, { initialDate, endDate, account })
@@ -17,7 +18,6 @@ const sectionBalance = {
   },
 
   getBalance(target, { initialDate, endDate, account }) {
-    // fetch(`/entry/balance?initialDate=${initialDate.toISOString().substring(0, 10)}&endDate=${endDate.toISOString().substring(0, 10)}&account=${account}`)
     getRequest('/entry/balance', { initialDate, endDate, account })
     .then(data => data.json())
     .then(balance => {

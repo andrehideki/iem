@@ -66,7 +66,6 @@ const tableEntries = {
         `;
         for (let button of tbody.querySelectorAll('button')) {
           button.addEventListener('click', ({ target }) => {
-            console.log(button)
             const id = button.dataset.id;
             if (confirm('Você confirma exclusão?')) {
               tableEntries.deleteEntry(id); 
