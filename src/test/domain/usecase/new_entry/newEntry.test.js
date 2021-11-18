@@ -1,3 +1,4 @@
+import Account from '../../../../domain/model/Account';
 import { newEntry } from '../../../../domain/usecase/';
 import AccountRepositoryMemory from '../../../../infra/repository/AccountRepositoryMemory';
 import EntryRepositoryMemory from '../../../../infra/repository/EntryRepositoryMemory';
@@ -28,6 +29,12 @@ test('should register a new entry', async () => {
 test('should register account if account not exists', async () => {
   await newEntry(entry, { entryRepository, accountRepository });
   const account = await accountRepository.get(entry.account);
-  console.log(accountRepository.accounts)
   expect(account.balance).toBe(100);
+});
+
+test('should sum account balance if account exists', async () => {
+  await accountRepository.persist(new Account({ name: entry.account, balance: 200 }));
+  await newEntry(entry, { entryRepository, accountRepository });
+  const account = await accountRepository.get(entry.account);
+  expect(account.balance).toBe(entry.value + 200);
 });

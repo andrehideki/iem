@@ -6,4 +6,8 @@ export default class {
     this.name = name;
     this.balance = balance;
   }
+
+  add(value) {
+    this.balance = this.balance + value;
+  }
 }

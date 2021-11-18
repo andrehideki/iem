@@ -7,7 +7,8 @@ const newEntry = async ({ name, description, date, value, account }, { entryRepo
   await entryRepository.persist(entry);
   const registeredAccount = await accountRepository.get(entry.account);
   if (!!registeredAccount) {
-    console.log('exists')
+    registeredAccount.add(value);
+    await accountRepository.update(registeredAccount);
   } else {
     await accountRepository.persist(new Account({ name: account, balance: value }));
   }
