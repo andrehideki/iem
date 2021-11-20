@@ -1,11 +1,13 @@
 import { getEntries, newEntry, getBalance, deleteEntry, updateEntry, getAccounts } from '../../domain/usecase';
 import { Router } from 'express';
 import EntryMapper from '../mapper/EntryMapper';
+import AccountMapper from '../mapper/AccountMapper';
 import EntryRepositoryDatabase from '../repository/EntryRepositoryDatabase';
+import AccountRepositoryDatabase from '../repository/AccountRepositoryDatabase';
 
 
 const entryRepository = new EntryRepositoryDatabase(EntryMapper);
-
+const accountRepository = new AccountRepositoryDatabase(AccountMapper);
 const router = Router();
 
 router.get('/entry', async (req, res) => {
@@ -35,7 +37,7 @@ router.get('/account', async (req, res) => {
 
 router.post('/entry', async (req, res) => {
   const { name, description, date, value, account } = req.body;
-  await newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0), account }, entryRepository);
+  await newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0), account },  { entryRepository, accountRepository });
   res.status(201).send('');
 });
 
