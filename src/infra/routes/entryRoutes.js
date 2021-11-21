@@ -4,54 +4,18 @@ import EntryMapper from '../mapper/EntryMapper';
 import AccountMapper from '../mapper/AccountMapper';
 import EntryRepositoryDatabase from '../repository/EntryRepositoryDatabase';
 import AccountRepositoryDatabase from '../repository/AccountRepositoryDatabase';
-
+import entryController from '../controller/entryController';
 
 const entryRepository = new EntryRepositoryDatabase(EntryMapper);
 const accountRepository = new AccountRepositoryDatabase(AccountMapper);
 const router = Router();
+entryController.init({ entryRepository, accountRepository });
 
-router.get('/entry', async (req, res) => {
-  const { initialDate, endDate, account } = req.query;
-  const entries = await getEntries({ 
-    initialDate: !!initialDate? new Date(initialDate) : undefined,
-    endDate: !!endDate? new Date(endDate) : undefined,
-    account: account || ''
-  }, { entryRepository });
-  res.send(entries);
-});
-
-router.get('/entry/balance', async (req, res) => {
-  const { initialDate, endDate, account } = req.query;
-  const balance = await getBalance({
-    initialDate: new Date(initialDate), 
-    endDate: new Date(endDate),
-    account: account || ''
-    }, { entryRepository });
-  res.send(balance);
-});
-
-router.get('/account', async (req, res) => {
-  const accounts = await getAccounts({ entryRepository });
-  res.send(accounts);
-});
-
-router.post('/entry', async (req, res) => {
-  const { name, description, date, value, account } = req.body;
-  await newEntry({ name, description, date: new Date(date), value: parseFloat(value || 0), account },  { entryRepository, accountRepository });
-  res.status(201).send('');
-});
-
-router.put('/entry/:id', async (req, res) => {
-  const id = parseInt(req.params.id || 0);
-  const { name, description, date, value, account } = req.body;
-  await updateEntry({ id, name, description, date: new Date(date), value: parseFloat(value || 0), account }, entryRepository);
-  res.status(200).send('');
-});
-
-router.delete('/entry/:id', async (req, res) => {
-  const id = parseInt(req.params.id || 0);
-  await deleteEntry(id, { entryRepository });
-  res.status(200).send('');
-});
+router.get('/entry', entryController.getEntries);
+router.get('/entry/balance', entryController.getBalance);
+router.get('/account', entryController.getAccounts);
+router.post('/entry', entryController.newEntry);
+router.put('/entry/:id', entryController.updateEntry);
+router.delete('/entry/:id', entryController.deleteEntry);
 
 export { router };
