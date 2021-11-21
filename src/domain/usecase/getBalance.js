@@ -1,4 +1,4 @@
-import Period from "../../model/Period";
+import Period from "../model/Period";
 
 const getBalance = async ({ initialDate, endDate, account }, { entryRepository }) => {
   const period = new Period({ initialDate, endDate });

@@ -1,5 +1,5 @@
-import Account from '../../model/Account';
-import Entry from '../../model/Entry';
+import Account from '../model/Account';
+import Entry from '../model/Entry';
 
 const newEntry = async ({ name, description, date, value, account }, { entryRepository, accountRepository }) => {
   validate({ name, description, date, value, account });

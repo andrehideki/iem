@@ -1,4 +1,4 @@
-import Period from '../../model/Period';
+import Period from '../model/Period';
 
 const getEntries = async ({ initialDate, endDate, account }, { entryRepository }) => {
   const period = (!!initialDate && !!endDate)? new Period({ initialDate, endDate }) : undefined;

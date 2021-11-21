@@ -1,4 +1,4 @@
-import Entry from '../../model/Entry';
+import Entry from '../model/Entry';
 
 const updateEntry = async ({ id, name, description, date, value, account }, entryRepository) => {
   let entry = await entryRepository.get(id);

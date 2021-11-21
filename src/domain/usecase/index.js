@@ -1,6 +1,6 @@
-export { default as newEntry } from './new_entry/newEntry';
-export { default as deleteEntry } from './delete_entry/deleteEntry';
-export { default as getEntries } from './get_entries/getEntries';
-export { default as getBalance } from './get_balance/getBalance';
-export { default as updateEntry } from './update_entry/updateEntry';
-export { default as getAccounts } from './get_accounts/getAccounts';
+export { default as newEntry } from './newEntry';
+export { default as deleteEntry } from './deleteEntry';
+export { default as getEntries } from './getEntries';
+export { default as getBalance } from './getBalance';
+export { default as updateEntry } from './updateEntry';
+export { default as getAccounts } from './getAccounts';
