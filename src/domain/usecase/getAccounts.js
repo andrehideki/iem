@@ -1,9 +1,9 @@
-const getAccounts = async ({ entryRepository }) => {
-  const accounts = await entryRepository.getAllAccounts();
+const getAccounts = async ({ accountRepository }) => {
+  const accounts = await accountRepository.getAll();
   return accounts.map(account => {
     return {
-      name: account,
-      balance: 0
+      name: account.name,
+      balance: account.balance
     }
   });
 }

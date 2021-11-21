@@ -10,4 +10,8 @@ export default class {
   add(value) {
     this.balance = this.balance + value;
   }
+
+  subtract(value) {
+    this.balance = this.balance - value;
+  }
 }

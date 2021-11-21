@@ -1,4 +1,4 @@
-import { deleteEntry, getAccounts, getBalance, getEntries, newEntry } from "../../domain/usecase";
+import { deleteEntry, getAccounts, getBalance, getEntries, newEntry, updateEntry } from "../../domain/usecase";
 
 const entryController = {
   
