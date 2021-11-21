@@ -61,7 +61,7 @@ export default class extends EntryRepository {
             }
           }, {
             account: {
-              [Op.like]: `%${account || ''}%`
+              [Op.like]: `${account || '%'}`
             }
           }
         ],
